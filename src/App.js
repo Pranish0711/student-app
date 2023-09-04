@@ -24,6 +24,7 @@ const App = () => {
             setUsers(prevState => [...prevState, obj])
             let res = await fetch("http://localhost:8080/api/student", {
                 method: "POST",
+                'Content-Type': 'application/json',
                 body: JSON.stringify({
                     "name": "pranish",
                     "dateOfBirth": "2022-03-05T18:30:00.000+00:00",

@@ -17,6 +17,7 @@ const App = () => {
             .then((response) => response.json())
             .then((data) => {
                 console.log(data)
+                data.sort((a, b) => a.name.localeCompare(b.name));
                 setUsers(data);
                             });
     }
@@ -54,7 +55,6 @@ const App = () => {
                     "gender": gender
                 }),
             });
-            let resJson = await res.json();
             if (res.status === 200) {
                 setMessage("User created successfully");
             } else {
@@ -65,23 +65,14 @@ const App = () => {
         }
     };
 
-
-
-
-
-
-
-
     return (
         <>
             <div style={{display:"flex", width:"350px",padding:"60px",margin:"50px", background:"lightblue",flexDirection:"column",justifyContent:"center"}}>
 
 
-
-
                 <h1>Student Id</h1>
                 <div><label style={{fontWeight:"500"}}>Name:</label>
-                    <input onChange={ (event) => { setName(event.target.value) } } style={{margin:"20px"}} placeholder=" Enter your Name "></input>
+                    <input onChange={ (event) => { setName(event.target.value) } } style={{margin:"20px"}} placeholder=" Enter your Name" />
                 </div><div>
                 <label style={{fontWeight:"500"}}>Date Of Birth :</label>
                 <input type="date" onChange= {e=>setDateOfBirth(e.target.value)} style={{margin:"20px"}}/></div>
@@ -113,7 +104,7 @@ const App = () => {
                     </div>
                 </div>
                 <div>
-                    <label style={{fontWeight:"500"}}>Gender :</label>
+                    <label style={{fontWeight:"600"}}>Gender :</label>
                     <input type="radio" name="gender" value="Male" onChange={(e) =>setGender(e.target.value)} style={{margin:"15px"}}/>Male
                     <input type="radio" name="gender" value="Female" onChange={(e) =>setGender(e.target.value)} style={{margin:"15px"}}/>Female
                 </div> <button
@@ -123,79 +114,37 @@ const App = () => {
             </div>
 
 
-
-
-
-
-
-
             <div className="message">{message ? <p>{message}</p> : null}</div>
 
 
-
-
-
-
-
-
-
-
-
-
-            <div>Users List:</div>
+            <div style={{fontWeight:"800"}} >Students List:</div>
+            <br/>
             <table border={1} width="40%" cellPadding={10}>
                 <tr>
-                    <th>User Name</th>
-                    <th>User Date </th>
-                    <th> User Gender</th>
-                    <th>User Class</th>
-                    <th>User Division</th>
+                    <th>Student Name</th>
+                    <th>Student Date </th>
+                    <th>Student Class</th>
+                    <th>Student Division</th>
+                    <th>Student Gender</th>
                 </tr>
                 {users.map((data) => {
                     return(
                         <>
                             <tr>
-                                <td> {data.name}</td>
-                                <td>{data.dateOfBirth}</td>
-                                <td>{data.division}</td>
-                                <td> {data.className}</td>
-                                <td>{data.gender}</td>
+                                <td align="center"> {data.name}</td>
+                                <td align="center">{data.dateOfBirth}</td>
+                                <td align="center"> {data.className}</td>
+                                <td align="center">{data.division}</td>
+                                <td align="center">{data.gender}</td>
                             </tr>
                         </>
                     )
                 })}
             </table>
 
-
-
-
-
-
-
-
         </>
     )}
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
